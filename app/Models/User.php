@@ -41,10 +41,11 @@ class User extends Authenticatable
      */
 
     public function quote(){
-        $this->hasMany(Quote::class);
+        return $this->hasMany(Quote::class);
     }
     public function movie(){
-        $this->hasMany(Movie::class);
+
+        return $this->hasMany(Movie::class);
     }
 
 }
