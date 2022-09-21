@@ -4,17 +4,18 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use League\CommonMark\Extension\SmartPunct\Quote;
 
 class Movie extends Model
 {
     use HasFactory;
 
-    public function users(){
-        return $this->belongsTo(User::class);
+    public mixed $quotes;
+
+    public function author(){
+        return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function quotes(){
+    public function quote(){
         return $this->hasMany(Quote::class);
     }
 }

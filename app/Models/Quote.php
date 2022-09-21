@@ -9,10 +9,14 @@ class quote extends Model
 {
     use HasFactory;
 
-    public function movies(){
-        $this->belongsTo(Movie::class);
+    public function movie()
+    {
+        return $this->belongsTo(Movie::class);
     }
-    public function users(){
-        $this->belongsTo(User::class);
+
+    public function author()
+    {
+        return $this->belongsTo(User::class, 'user_id');
     }
 }
+

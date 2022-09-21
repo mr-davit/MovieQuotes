@@ -40,10 +40,10 @@ class User extends Authenticatable
      * @var array<string, string>
      */
 
-    public function quotes(){
+    public function quote(){
         $this->hasMany(Quote::class);
     }
-    public function movies(){
+    public function movie(){
         $this->hasMany(Movie::class);
     }
 
