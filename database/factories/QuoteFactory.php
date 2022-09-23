@@ -7,9 +7,9 @@ use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\quote>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Quote>
  */
-class QuotesFactory extends Factory
+class QuoteFactory extends Factory
 {
     /**
      * Define the model's default state.

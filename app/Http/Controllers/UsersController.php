@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use League\CommonMark\Extension\SmartPunct\Quote;
 
 class UsersController extends Controller
 {
@@ -12,7 +13,7 @@ class UsersController extends Controller
         return view('user',[
             'author' => $author,
             'movies' => $author->movie,
-//            'quotes' => $author->movie->Quote
+//            'quotes' => \App\Models\Quote::where('movie_id','movie')
         ]);
     }
 }

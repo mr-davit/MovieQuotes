@@ -14,8 +14,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-         \App\Models\Quote::factory(50)->create();
 
+         \App\Models\Quote::factory(20)->create();
+         \App\Models\Movie::factory(20)->create();
 
     }
 }
