@@ -7,7 +7,7 @@ use App\Models\Movie;
 use App\Models\quote;
 use Illuminate\Http\Request;
 
-class MovieController extends Controller
+class MoviesController extends Controller
 {
     public function index(Movie $movie){
 
