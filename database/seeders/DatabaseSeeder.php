@@ -25,8 +25,7 @@ class DatabaseSeeder extends Seeder
             'user_id' => $users->id
         ]);
 
-//        foreach ($user as $users) {
-//        $users_id = $users->id;
+
         Quote::factory()->create([
             'user_id' => $users->id,
             'movie_id' => $movie->id

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class SessionsController extends Controller
 {
@@ -10,14 +11,25 @@ class SessionsController extends Controller
         return view('create');
     }
 public function store(){
-        return view('welcome', [
+    $attributes = request() -> validate([
+        'email' => 'required',
+        'password' => 'required'
+    ]);
 
-        ]);
+    if (auth()->attempt($attributes)) {
+
+        session()->regenerate();
+        return redirect('/')->with('success', 'you logged in');
+    }
+
+    return back()->withInput()->withErrors(['email'=>'your email and password doesnt match']);
+}
+
+public function destroy(){
+        auth()->logout();
+        return redirect('/');
 }
 
 }
 
-return view('movie',[
-    'movie' => $movie,
-    'quotes' => $movie->quote
-]);
+

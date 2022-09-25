@@ -24,4 +24,4 @@ Route::get('/author/{author:username}', [UsersController::class, 'index'])->name
 
 Route::get('login', [SessionsController::class, 'create'])->middleware('guest');
 Route::post('login', [SessionsController::class, 'store'])->middleware('guest');
-Route::post('logout', [SessionsController::class, 'destroy'])->middleware('auth');
+Route::get('logout', [SessionsController::class, 'destroy'])->middleware('auth');
