@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
-class SessionsController extends Controller
+class AuthController extends Controller
 {
     public function create(){
         return view('create');

@@ -1,8 +1,9 @@
 <?php
 
+use App\Http\Controllers\MovieCrudController;
 use App\Http\Controllers\MoviesController;
 use App\Http\Controllers\QuotesController;
-use App\Http\Controllers\SessionsController;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
 
@@ -20,8 +21,28 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [QuotesController::class, 'index'])->name('home');
 Route::get('/movie/{movie:slug}', [MoviesController::class, 'index'])->name('bymovie');
-Route::get('/author/{author:username}', [UsersController::class, 'index'])->name('bymovie');
+Route::get('/author/{author:username}', [UsersController::class, 'index'])->name('byauthor');
 
-Route::get('login', [SessionsController::class, 'create'])->middleware('guest');
-Route::post('login', [SessionsController::class, 'store'])->middleware('guest');
-Route::get('logout', [SessionsController::class, 'destroy'])->middleware('auth');
+
+//authorisation
+Route::get('login', [AuthController::class, 'create'])->middleware('guest');
+Route::post('login', [AuthController::class, 'store'])->middleware('guest');
+Route::get('logout', [AuthController::class, 'destroy'])->middleware('auth');
+
+
+//CRUD OPERATIONS
+Route::middleware(['auth'])->group(function () {
+Route::controller(MovieCrudController::class)->group(function (){
+    Route::get('/admin',  'index')->name('admin');
+    Route::get('/admin/show/{movie:slug}', 'show')->name('show-movie');
+
+    Route::get('/admin/create/movie',  'createMovie')->name('create-movie');
+    Route::post('/admin/create/movie',  'storeMovie')->name('store-movie');
+
+    Route::get('/admin/edit/{movie:slug}', 'edit')->name('edit-movie');
+    Route::post('/admin/edit/{movie:slug}',  'update')->name('update');
+
+    Route::get('/admin/{movie:slug}', 'view')->name('viewmovie');
+    Route::post('/admin/movies/delete/{$movie:slug}',  'view')->name('viewmovie');
+});
+});
