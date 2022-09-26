@@ -7,10 +7,10 @@ use Illuminate\Validation\Rule;
 
 class AuthController extends Controller
 {
-    public function create(){
+    public function loginPage(){
         return view('create');
     }
-public function store(){
+public function login(){
     $attributes = request() -> validate([
         'email' => 'required',
         'password' => 'required'
@@ -25,7 +25,7 @@ public function store(){
     return back()->withInput()->withErrors(['email'=>'your email and password doesnt match']);
 }
 
-public function destroy(){
+public function logout(){
         auth()->logout();
         return redirect('/');
 }

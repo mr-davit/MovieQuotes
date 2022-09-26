@@ -8,6 +8,7 @@
                 </button>
             </x-slot>
         Welcome, {{ auth()->user()->username }}!
+        <a href="{{route('auth.logout')}}">Log Out</a>
     @endauth
     <div class="border w-1/3 bordor-gray-500 p-10">
         <img src="{{$quotes->thumbnail}}" alt="">
@@ -15,10 +16,10 @@
      {{$quotes->body}}
  </h1> <br>
 {{--        {{dd($quotes)}}--}}
-        <a href="/movie/{{$quotes->movie->slug}}">{{$quotes->movie->title}}</a><br>
-        <a href="/author/{{$quotes->author->username}}">{{$quotes->author->username}}</a>
+        <a href="{{route('bymovie',['movie' => $quotes->movie->slug])}}">{{$quotes->movie->title}}</a><br>
+        <a href="{{route('byauthor',['author' =>$quotes->author->username])}}">{{$quotes->author->username}}</a>
     </div>
 
 
-    <a href="/logout">Log Out</a>
+
 </x-layout>

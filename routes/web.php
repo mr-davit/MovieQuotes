@@ -25,9 +25,9 @@ Route::get('/author/{author:username}', [UsersController::class, 'index'])->name
 
 
 //authorisation
-Route::get('login', [AuthController::class, 'create'])->middleware('guest');
-Route::post('login', [AuthController::class, 'store'])->middleware('guest');
-Route::get('logout', [AuthController::class, 'destroy'])->middleware('auth');
+Route::get('login', [AuthController::class, 'loginPage'])->name('auth.loginPage')->middleware('guest');
+Route::post('login', [AuthController::class, 'login'])->name('auth.login')->middleware('guest');
+Route::get('logout', [AuthController::class, 'logout'])->name('auth.logout')->middleware('auth');
 
 
 //CRUD OPERATIONS
@@ -43,6 +43,6 @@ Route::controller(MovieCrudController::class)->group(function (){
     Route::post('/admin/edit/{movie:slug}',  'update')->name('update');
 
     Route::get('/admin/{movie:slug}', 'view')->name('viewmovie');
-    Route::post('/admin/movies/delete/{$movie:slug}',  'view')->name('viewmovie');
+    Route::post('/admin/movies/delete/{$movie:slug}',  'view')->name('deletemovie');
 });
 });
