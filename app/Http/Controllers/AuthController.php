@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\LoginUserRequest;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
@@ -10,24 +11,17 @@ class AuthController extends Controller
     public function loginPage(){
         return view('create');
     }
-public function login(){
-    $attributes = request() -> validate([
-        'email' => 'required',
-        'password' => 'required'
-    ]);
+public function login(LoginUserRequest $request){
 
-    if (auth()->attempt($attributes)) {
 
-        session()->regenerate();
+        auth()->attempt($request->validated());
         return redirect('/')->with('success', 'you logged in');
-    }
 
-    return back()->withInput()->withErrors(['email'=>'your email and password doesnt match']);
 }
 
 public function logout(){
         auth()->logout();
-        return redirect('/');
+        return redirect(route('home'));
 }
 
 }

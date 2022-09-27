@@ -1,6 +1,6 @@
 <x-layout>
 
-        <form method="POST" action="/admin/create/movie ">
+        <form method="POST" action="{{route('create-movie')}}">
             @csrf
 
             <x-form.input name="title" required />
