@@ -8,9 +8,7 @@ use Illuminate\Validation\Rule;
 
 class AuthController extends Controller
 {
-    public function loginPage(){
-        return view('create');
-    }
+
 public function login(LoginUserRequest $request){
 
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\MovieStoreRequest;
+use App\Http\Requests\MovieUpdateRequest;
 use App\Models\Movie;
 use App\Models\Quote;
 use Illuminate\Http\Request;
@@ -20,15 +21,11 @@ class MovieCrudController extends Controller
     public function show(Movie $movie ){
         return view('admin.show',[
             'movie' => $movie,
-            'quotes' => $movie->quote,
+            'quotes' => $movie->quote
         ]);
     }
 
-    public function createMovie(){
 
-        return view('admin.create-movie');
-
-    }
 
     public function storeMovie(MovieStoreRequest $request){
 
@@ -39,8 +36,21 @@ class MovieCrudController extends Controller
         Movie::create($request->validated()+[
             'user_id' => auth()->id()
             ]);
-        return redirect('/admin/'.$request['movie_slug']);
+        return redirect(route('admin'));
 
+    }
+
+    public function edit(Movie $movie){
+
+            return view('admin.edit-movie',[
+                'movie' => $movie
+            ]);
+    }
+
+    public function update(MovieUpdateRequest $request, Movie $movie ){
+
+        $movie->update($request->validated());
+        return redirect(route('admin'));
     }
 
 }

@@ -17,12 +17,13 @@
                                 </div>
                             </td>
 
+
                             <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                <a href="/admin/movies/{{ $movie->id }}/edit" class="text-blue-500 hover:text-blue-600">Edit</a>
+                                <a href="{{route('edit-movie',['movie' => $movie->slug])}}" class="text-blue-500 hover:text-blue-600">Edit</a>
                             </td>
 
                             <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                <form method="post" action="/admin/movies/delete/{{ $movie->id }}">
+                                <form method="post" action="{{route('delete-movie',['movie' => $movie->slug])}}">
                                     @csrf
                                     @method('DELETE')
 
@@ -36,12 +37,16 @@
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     <div class="flex items-center">
                                         <div class="text-sm font-medium text-gray-900">
-                                            <a href="{{route('show-movie',['movie' => $quote->id])}}">
                                                 <img class="w-10" src="{{ $quote->thumbnail }}" alt="">
-                                            </a>
                                         </div>
                                     </div>
                                 </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                   {{$quote->body}}
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+Created By <a href="{{route('byauthor',['author' => $quote->author->username])}}">{{$quote->author->username}}</a>                                 </td>
+
 
                                 <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                     <a href="/admin/movies/{{ $quote->id }}/edit" class="text-blue-500 hover:text-blue-600">Edit</a>

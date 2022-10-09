@@ -19,11 +19,11 @@
                                 </td>
 
                                 <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                    <a href="/admin/movies/{{ $movie->id }}/edit" class="text-blue-500 hover:text-blue-600">Edit</a>
+                                    <a href="{{route('edit-movie',['movie' => $movie->slug])}}" class="text-blue-500 hover:text-blue-600">Edit</a>
                                 </td>
 
                                 <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                    <form method="post" action="/admin/movies/delete/{{ $movie->id }}">
+                                    <form method="post" action="{{route('delete-movie',['movie' => $movie->slug])}}">
                                         @csrf
                                         @method('DELETE')
 

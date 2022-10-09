@@ -10,6 +10,7 @@ class Movie extends Model
     use HasFactory;
 
     public mixed $quotes;
+    Protected $guarded = ['id'];
 
     public function author(){
         return $this->belongsTo(User::class, 'user_id');
