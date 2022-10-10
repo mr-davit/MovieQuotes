@@ -54,13 +54,16 @@ Route::controller(MovieCrudController::class)->group(function (){
 
 Route::controller(QuotesCrudController::class)->group(function (){
 
-    Route::get('/admin/create/quote',  function (){
-                return view('admin.create-quote');})->name('create-quote');
-    Route::post('/admin/create/movie',  'storeQuote')->name('store-movie');
+    Route::get('/admin/show/{movie:slug}/quote',  function (Movie $movie){
+                return view('admin.create-quote',[
+                    'movie' => $movie
+                    ]
+                );})->name('create-quote');
+    Route::post('/admin/show/{movie:slug}/quote',  'store')->name('store-quote');
 
-    Route::get('/admin/edit/{quote}', 'edit')->name('edit-movie');
+    Route::get('/admin/edit/{quote}', 'edit')->name('edit-quote');
     Route::post('/admin/edit/{quote}',  'update')->name('update-quote');
 
-    Route::post('/admin/movies/delete/{quote}',  'view')->name('delete-movie');
+    Route::post('/admin/movies/delete/{quote}',  'view')->name('delete-quote');
 });
 });
