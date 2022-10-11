@@ -1,4 +1,5 @@
 <x-layout>
+    {{dd(app()->getLocale())}}
 
     @auth
 

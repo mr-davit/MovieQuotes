@@ -21,4 +21,15 @@ class QuotesCrudController extends Controller
         return redirect(route('admin'));
 
     }
+
+    public function edit(Movie $movie){
+
+        return view('admin.edit-quote',[
+            'movie' => $movie
+        ]);
+    }
+
+    public function update(QuoteUpdateRequest $request, Movie $movie){
+
+    }
 }

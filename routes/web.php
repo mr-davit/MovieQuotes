@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\MovieCrudController;
 use App\Http\Controllers\MoviesController;
 use App\Http\Controllers\QuotesController;
@@ -24,7 +25,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [QuotesController::class, 'index'])->name('home');
 Route::get('/movie/{movie:slug}', [MoviesController::class, 'index'])->name('bymovie');
 Route::get('/author/{author:username}', [UsersController::class, 'index'])->name('byauthor');
+//language
 
+Route::get('/change-language/{locale}',[LanguageController::class, 'change'])->name('change.language');
 
 //authorisation
 Route::get('/login', function (){return view('create');})->name('auth.loginPage')->middleware('guest');
@@ -59,10 +62,11 @@ Route::controller(QuotesCrudController::class)->group(function (){
                     'movie' => $movie
                     ]
                 );})->name('create-quote');
+
     Route::post('/admin/show/{movie:slug}/quote',  'store')->name('store-quote');
 
-    Route::get('/admin/edit/{quote}', 'edit')->name('edit-quote');
-    Route::post('/admin/edit/{quote}',  'update')->name('update-quote');
+    Route::get('/admin/show/{movie:slug}/{quote}/edit', 'edit')->name('edit-quote');
+    Route::patch('/admin/show/{movie:slug}/{quote}/edit',  'update')->name('update-quote');
 
     Route::post('/admin/movies/delete/{quote}',  'view')->name('delete-quote');
 });
