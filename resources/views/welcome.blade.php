@@ -16,7 +16,6 @@
  <h1>
      {{$quotes->body}}
  </h1> <br>
-{{--        {{dd($quotes)}}--}}
         <a href="{{route('bymovie',['movie' => $quotes->movie->slug])}}">{{$quotes->movie->title}}</a><br>
         <a href="{{route('byauthor',['author' =>$quotes->author->username])}}">{{$quotes->author->username}}</a>
     </div>

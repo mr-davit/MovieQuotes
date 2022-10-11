@@ -48,11 +48,11 @@ Created By <a href="{{route('byauthor',['author' => $quote->author->username])}}
 
 
                                 <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                    <a href="/admin/movies/{{ $quote->id }}/edit" class="text-blue-500 hover:text-blue-600">{{__('crud.edit')}}</a>
+                                    <a href="{{route('edit-quote',['movie' => $movie->slug, 'quote' => $quote])}}" class="text-blue-500 hover:text-blue-600">{{__('crud.edit')}}</a>
                                 </td>
 
                                 <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                    <form method="post" action="/admin/movies/delete/{{ $quote->id }}">
+                                    <form method="post" action="{{route('delete-quote',['movie' => $movie->slug, 'quote' => $quote])}}">
                                         @csrf
                                         @method('DELETE')
 

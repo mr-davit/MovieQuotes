@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LandingController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\MovieCrudController;
 use App\Http\Controllers\MoviesController;
@@ -22,7 +23,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::get('/', [QuotesController::class, 'index'])->name('home');
+Route::get('/', [LandingController::class, 'index'])->name('home');
 Route::get('/movie/{movie:slug}', [MoviesController::class, 'index'])->name('bymovie');
 Route::get('/author/{author:username}', [UsersController::class, 'index'])->name('byauthor');
 //language
@@ -37,8 +38,8 @@ Route::get('logout', [AuthController::class, 'logout'])->name('auth.logout')->mi
 
 //CRUD OPERATIONS
 Route::middleware(['auth'])->group(function () {
-Route::controller(MovieCrudController::class)->group(function (){
-    Route::get('/admin',  'index')->name('admin');
+Route::controller(MoviesController::class)->group(function (){
+    Route::get('/admin',  'admin')->name('admin');
     Route::get('/admin/show/{movie:slug}', 'show')->name('show-movie');
 
     Route::get('/admin/create/movie',  function (){
@@ -55,7 +56,7 @@ Route::controller(MovieCrudController::class)->group(function (){
     })->name('delete-movie');
 });
 
-Route::controller(QuotesCrudController::class)->group(function (){
+Route::controller(QuotesController::class)->group(function (){
 
     Route::get('/admin/show/{movie:slug}/quote',  function (Movie $movie){
                 return view('admin.create-quote',[
@@ -68,6 +69,6 @@ Route::controller(QuotesCrudController::class)->group(function (){
     Route::get('/admin/show/{movie:slug}/{quote}/edit', 'edit')->name('edit-quote');
     Route::patch('/admin/show/{movie:slug}/{quote}/edit',  'update')->name('update-quote');
 
-    Route::post('/admin/movies/delete/{quote}',  'view')->name('delete-quote');
+    Route::post('/admin/show/{movie:slug}/{quote}/delete',  'view')->name('delete-quote');
 });
 });
