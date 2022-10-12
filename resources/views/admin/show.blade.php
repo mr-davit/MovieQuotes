@@ -18,7 +18,7 @@
 
 
                             <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                <a href="{{route('edit-movie',['movie' => $movie->slug])}}" class="text-blue-500 hover:text-blue-600">Edit</a>
+                                <a href="{{route('edit-movie',['movie' => $movie->slug])}}" class="text-blue-500 hover:text-blue-600">{{__('crud.edit')}}</a>
                             </td>
 
                             <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
@@ -26,7 +26,7 @@
                                     @csrf
                                     @method('DELETE')
 
-                                    <button class="text-xs text-gray-400">Delete</button>
+                                    <button class="text-xs text-gray-400">{{__('crud.delete')}}</button>
                                 </form>
                             </td>
                         </tr>
@@ -44,7 +44,7 @@
                                    {{$quote->body}}
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-Created By <a href="{{route('byauthor',['author' => $quote->author->username])}}">{{$quote->author->username}}</a>                                 </td>
+                                    {{__('crud.createdby')}} <a href="{{route('byauthor',['author' => $quote->author->username])}}">{{$quote->author->username}}</a>                                 </td>
 
 
                                 <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
@@ -56,7 +56,7 @@ Created By <a href="{{route('byauthor',['author' => $quote->author->username])}}
                                         @csrf
                                         @method('DELETE')
 
-                                        <button class="text-xs text-gray-400">Delete</button>
+                                        <button class="text-xs text-gray-400">{{__('crud.delete')}}</button>
                                     </form>
                                 </td>
                             </tr>

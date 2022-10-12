@@ -9,8 +9,7 @@
         <x-form.textarea name="body" required></x-form.textarea>
         <input type="hidden" name="movie_id" id="movie_id" value="{{$movie->id}}" required>
 
-
-        <x-form.button>Publish</x-form.button>
+        <x-form.button>{{__('crud.publish')}}</x-form.button>
     </form>
 
 </x-layout>

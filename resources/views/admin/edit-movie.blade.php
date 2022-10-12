@@ -9,7 +9,7 @@
 
 
 
-        <x-form.button>Save changes</x-form.button>
+        <x-form.button>{{__('crud.update')}}</x-form.button>
     </form>
 
 </x-layout>

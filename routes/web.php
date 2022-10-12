@@ -32,6 +32,7 @@ Route::get('/change-language/{locale}',[LanguageController::class, 'change'])->n
 
 //authorisation
 Route::get('/login', function (){return view('create');})->name('auth.loginPage')->middleware('guest');
+
 Route::post('login', [AuthController::class, 'login'])->name('auth.login')->middleware('guest');
 Route::get('logout', [AuthController::class, 'logout'])->name('auth.logout')->middleware('auth');
 

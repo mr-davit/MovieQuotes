@@ -19,7 +19,7 @@
                                 </td>
 
                                 <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                    <a href="{{route('edit-movie',['movie' => $movie->slug])}}" class="text-blue-500 hover:text-blue-600">Edit</a>
+                                    <a href="{{route('edit-movie',['movie' => $movie->slug])}}" class="text-blue-500 hover:text-blue-600">{{__('crud.edit')}}</a>
                                 </td>
 
                                 <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
@@ -27,7 +27,7 @@
                                         @csrf
                                         @method('DELETE')
 
-                                        <button class="text-xs text-gray-400">Delete</button>
+                                        <button class="text-xs text-gray-400">{{__('crud.delete')}}</button>
                                     </form>
                                 </td>
                             </tr>
