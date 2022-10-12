@@ -35,15 +35,10 @@ class MoviesController extends Controller
 
 
 
-    public function storeMovie(MovieStoreRequest $request){
+    public function store(MovieStoreRequest $request){
 
-
-
-        $attributes['user_id'] = auth()->id();
-
-        Movie::create($request->validated()+[
-                'user_id' => auth()->id()
-            ]);
+        $movie = Movie::create($request->validated());
+        $movie->user()->attach(auth()->user());
         return redirect(route('admin'));
 
     }
@@ -59,5 +54,12 @@ class MoviesController extends Controller
 
         $movie->update($request->validated());
         return redirect(route('admin'));
+    }
+
+    public function delete(Movie $movie)
+
+    {
+        $movie->delete();
+        return back();
     }
 }

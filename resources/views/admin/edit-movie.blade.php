@@ -1,10 +1,13 @@
 <x-layout>
 
-    <form method="POST" action="{{route('update-movie',['movie'=>$movie->slug])}}">
+    <x-user-dashboard>
+    </x-user-dashboard>
+    <form method="POST" action="{{route('movie.update',['movie'=>$movie->slug])}}">
         @csrf
         @method('PATCH')
 
-        <x-form.input name="title" value="{{old('title',$movie->title)}}" required></x-form.input>
+        <x-form.input name="title_en" value="{{old('title_en',$movie->title)}}" required></x-form.input>
+        <x-form.input name="title_ka" value="{{old('title_ka',$movie->title)}}" required></x-form.input>
         <x-form.input name="slug" value="{{$movie->slug}}" required></x-form.input>
 
 

@@ -3,7 +3,7 @@
 return [
 
 
-
+    'create' => 'Create',
     'edit' => 'Edit',
     'delete' => 'Delete',
     'update' => 'Update',
@@ -11,7 +11,7 @@ return [
     'login' => 'Login',
     'welcome'=>'Welcome',
     'logout'=> 'Log out',
-    'createdby'=> 'Created By',
+    'created_by'=> 'Created By',
 
 
 ];

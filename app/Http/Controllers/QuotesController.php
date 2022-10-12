@@ -32,4 +32,12 @@ class QuotesController extends Controller
     public function update(QuoteUpdateRequest $request, Movie $movie){
 
     }
+
+    public function delete( Movie $movie){
+
+
+        $movie->quote->first()->delete();
+        return back();
+
+    }
 }
