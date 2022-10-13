@@ -1,17 +1,38 @@
 <x-layout>
-    <h1>
-        {{$movie->title}}
-    </h1>
 
 
-    @foreach($quotes as $quote)
-        <h1 class="text-red-500">
-            {{$quote->body}}
-        </h1>
-        <br>
-        <h3 class="text-green-500">
-            {{$quote->author->username}}
-        </h3>
+    <div class="w-full flex justify-between h-full pb-20 bg-gray-800">
+        <x-lang>
 
-    @endforeach
+        </x-lang>
+
+        <div class="w-9/12 flex flex-col align-middle justify-center">
+
+
+            <x-user-dashboard>
+
+            </x-user-dashboard>
+            <h1 class="text-center underline text-3xl my-6 text-white">{{$movie->title}}</h1>
+
+            @foreach($quotes as $quote)
+
+                <div class="border w-fit mx-auto mb-3 border-white rounded-xl pb-5" >
+
+            <img class="w-3/6 mx-auto" src="{{$quote->thumbnail}}" alt="">
+            <h1 class="text-center mt-6 text-white">{{$quote->body}}</h1>
+
+
+                </div>
+            @endforeach
+        </div>
+
+        <div class=" h-full w-1/12 bg-gray-800"></div>
+
+    </div>
+
+
+
+
+
+
 </x-layout>
