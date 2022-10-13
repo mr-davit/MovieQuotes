@@ -21,7 +21,8 @@ class QuoteFactory extends Factory
         return [
             'user_id' => User::factory(),
             'movie_id' => Movie::factory(),
-            'body' => $this->faker->sentence(),
+            'body' => json_encode(["key" => $this->faker->locale,
+                "value" => $this->faker->sentence] ),
             'thumbnail' => $this->faker->imageUrl(),
         ];
     }

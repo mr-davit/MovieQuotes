@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\MovieStoreRequest;
 use App\Http\Requests\MovieUpdateRequest;
+use App\Integration\Database\Post;
 use App\Models\Movie;
 
 use App\Models\quote;
@@ -37,8 +38,19 @@ class MoviesController extends Controller
 
     public function store(MovieStoreRequest $request){
 
-        $movie = Movie::create($request->validated());
-        $movie->user()->attach(auth()->user());
+        $request->slug='';
+        $movie = new Movie();
+        $movie->user_id=auth()->id();
+        $movie->slug=$request->slug;
+        $movie->setTranslation('title','en', $request->title_en);
+        $movie->setTranslation('title','ka', $request->title_ka);
+        $movie->save();
+
+//        Movie::create($request->validated()+[
+//                'user_id' => auth()->id()
+//            ]);
+//       $movie->setTranslations('title',$request->title);
+
         return redirect(route('admin'));
 
     }

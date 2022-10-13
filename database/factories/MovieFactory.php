@@ -20,7 +20,8 @@ class MovieFactory extends Factory
     {
         return [
             'slug' => $this->faker->unique()->slug(),
-            'title' => $this->faker->sentence(3),
+            'title' => json_encode(["key" => $this->faker->locale(),
+                                    "value" => $this->faker->sentence] ),
             'user_id' => User::factory(),
         ];
     }
