@@ -17,7 +17,7 @@ class Movie extends Model
     /**
      * @var int|mixed|string|null
      */
-    public mixed $user_id;
+
     Protected $guarded = ['id'];
 
     public function author(){

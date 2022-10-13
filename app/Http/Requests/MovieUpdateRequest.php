@@ -12,7 +12,8 @@ class MovieUpdateRequest extends FormRequest
     public function rules(Movie $movie)
     {
         return [
-            'title' => 'required',
+            'title_en' => 'required',
+            'title_ka' => 'required',
             'slug' => ['required', Rule::unique('movies','slug')->ignore($this->movie)]
         ];
     }

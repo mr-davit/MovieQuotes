@@ -11,7 +11,7 @@ class Quote extends Model
     use HasFactory;
     use HasTranslations;
 
-    public $translatable = ['title'];
+    public $translatable = ['body'];
 
     public function movie()
     {

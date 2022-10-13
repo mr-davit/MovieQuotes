@@ -64,7 +64,7 @@ Route::controller(QuotesController::class)->group(function (){
                 return view('admin.create-quote',[
                     'movie' => $movie
                     ]
-                );})->name('create-quote');
+                );})->name('quote.create');
 
     Route::post('/admin/show/{movie:slug}/quote',  'store')->name('quote.store');
 

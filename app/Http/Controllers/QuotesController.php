@@ -13,11 +13,16 @@ class QuotesController extends Controller
 
     public function store(QuoteStoreRequest $request, Movie $movie){
 
-        $movie->quote()->create($request->validated()+[
-                'user_id' => auth()->id(),
-                'movie_id' => $request->input('movie_id'),
-                'thumbnail' => $request->file('thumbnail')->store('thumbnails')
-            ]);
+
+        $user = auth()->id();
+
+       $quote = new Quote();
+        $quote->user_id = $user;
+        $quote->movie_id = $movie->id;
+        $quote->setTranslation('body','en', $request->body_en);
+        $quote->setTranslation('body','ka', $request->body_ka);
+        $quote->save();
+
         return redirect(route('admin'));
 
     }
@@ -29,8 +34,13 @@ class QuotesController extends Controller
         ]);
     }
 
-    public function update(QuoteUpdateRequest $request, Movie $movie){
-
+    public function update(QuoteUpdateRequest $request, Quote $quote){
+        $quote->update([
+            'body' => ['en'=> $request->body_en,
+                'ka'=> $request->body_ka,   ],
+            'thumbnail' => $request->thumbnail
+        ]);
+        return redirect(route('admin'));
     }
 
     public function delete( Movie $movie){

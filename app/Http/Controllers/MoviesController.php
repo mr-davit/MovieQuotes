@@ -8,6 +8,7 @@ use App\Integration\Database\Post;
 use App\Models\Movie;
 
 use App\Models\quote;
+use Auth;
 use Illuminate\Http\Request;
 
 class MoviesController extends Controller
@@ -38,23 +39,14 @@ class MoviesController extends Controller
 
     public function store(MovieStoreRequest $request){
 
-        $user = auth()->id();
 
         $movie = new Movie();
-        $movie->user_id = $user;
+        $movie->user_id = Auth::id();
         $movie->slug = $request->slug;
         $movie->setTranslation('title','en', $request->title_en);
         $movie->setTranslation('title','ka', $request->title_ka);
         $movie->save();
 
-//    $movie = Movie::create($request->validated()+[
-//            'title' => ['en' => $request->title_en,
-//                'ka' => $request->title_ka ] ,
-//            'user_id' => auth()->id()
-//        ]);
-//
-//        $movie->setTranslation('title','en', $request->title_en);
-//        $movie->setTranslation('title','ka', $request->title_ka);
         return redirect(route('admin'));
 
 
@@ -69,7 +61,11 @@ class MoviesController extends Controller
 
     public function update(MovieUpdateRequest $request, Movie $movie ){
 
-        $movie->update($request->validated());
+        $movie->update([
+            'title' => ['en'=> $request->title_en,
+                'ka'=> $request->title_ka,   ],
+            'slug' => $request->slug
+        ]);
         return redirect(route('admin'));
     }
 

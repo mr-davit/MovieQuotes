@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class QuoteUpdateRequest extends FormRequest
 {
@@ -24,7 +25,9 @@ class QuoteUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'body_en' => 'required',
+            'body_ka' => 'required',
+            'thumbnail' => 'required|image',
         ];
     }
 }
