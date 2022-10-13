@@ -38,20 +38,25 @@ class MoviesController extends Controller
 
     public function store(MovieStoreRequest $request){
 
-        $request->slug='';
+        $user = auth()->id();
+
         $movie = new Movie();
-        $movie->user_id=auth()->id();
-        $movie->slug=$request->slug;
+        $movie->user_id = $user;
+        $movie->slug = $request->slug;
         $movie->setTranslation('title','en', $request->title_en);
         $movie->setTranslation('title','ka', $request->title_ka);
         $movie->save();
 
-//        Movie::create($request->validated()+[
-//                'user_id' => auth()->id()
-//            ]);
-//       $movie->setTranslations('title',$request->title);
-
+//    $movie = Movie::create($request->validated()+[
+//            'title' => ['en' => $request->title_en,
+//                'ka' => $request->title_ka ] ,
+//            'user_id' => auth()->id()
+//        ]);
+//
+//        $movie->setTranslation('title','en', $request->title_en);
+//        $movie->setTranslation('title','ka', $request->title_ka);
         return redirect(route('admin'));
+
 
     }
 

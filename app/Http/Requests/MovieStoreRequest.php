@@ -8,8 +8,6 @@ use Illuminate\Validation\Rule;
 
 class MovieStoreRequest extends FormRequest
 {
-    public mixed $slug;
-    public mixed $title;
 
 
     /**
@@ -25,4 +23,6 @@ class MovieStoreRequest extends FormRequest
             'slug' => ['required', Rule::unique('movies','slug')]
         ];
     }
+
+
 }
