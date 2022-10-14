@@ -1,6 +1,5 @@
 <x-layout>
 
-
         <x-user-dashboard>
         </x-user-dashboard>
 

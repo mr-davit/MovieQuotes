@@ -14,7 +14,7 @@ class QuoteStoreRequest extends FormRequest
             'body_en' => 'required',
             'body_ka' => 'required',
             'thumbnail' => 'required|image',
-            'movie_id' => ['required', Rule::exists('quotes', 'movie_id')]
+            'movie_id' => ['required', Rule::exists('movies', 'id')]
         ];
     }
 }

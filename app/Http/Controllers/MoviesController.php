@@ -40,12 +40,12 @@ class MoviesController extends Controller
     public function store(MovieStoreRequest $request){
 
 
-        $movie = new Movie();
-        $movie->user_id = Auth::id();
-        $movie->slug = $request->slug;
-        $movie->setTranslation('title','en', $request->title_en);
-        $movie->setTranslation('title','ka', $request->title_ka);
-        $movie->save();
+        Movie::create([
+            'user_id' => Auth::id(),
+            'slug' => $request->slug,
+            'title' => ['en'=>  $request->title_en,
+                'ka'=> $request->title_ka ],
+        ]);
 
         return redirect(route('admin'));
 
@@ -55,7 +55,8 @@ class MoviesController extends Controller
     public function edit(Movie $movie){
 
         return view('admin.edit-movie',[
-            'movie' => $movie
+            'movie' => $movie,
+
         ]);
     }
 

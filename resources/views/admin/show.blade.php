@@ -49,7 +49,7 @@
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     <div class="flex items-center">
                                         <div class="text-sm font-medium text-gray-900">
-                                                <img class="w-10" src="{{ $quote->thumbnail }}" alt="">
+                                                <img class="w-10" src="{{asset('storage/'. $quote->thumbnail )}}" alt="">
                                         </div>
                                     </div>
                                 </td>

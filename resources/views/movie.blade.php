@@ -16,9 +16,9 @@
 
             @foreach($quotes as $quote)
 
-                <div class="border w-fit mx-auto mb-3 border-white rounded-xl pb-5" >
+                <div class="border w-2/3  mx-auto mb-3 border-white rounded-xl pb-5" >
 
-            <img class="w-3/6 mx-auto" src="{{$quote->thumbnail}}" alt="">
+            <img class="w-3/6 mx-auto" src="{{asset('storage/'. $quote->thumbnail )}}" alt="">
             <h1 class="text-center mt-6 text-white">{{$quote->body}}</h1>
 
 

@@ -18,21 +18,37 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
 
-        $user = User::factory(10)->create([
+        $user = User::factory()->create([
+            'username' => 'redberry',
+            'email' => 'test@redberry.ge',
         ]);
-        foreach ($user as $users) {
-        $movie = Movie::factory()->create([
-            'user_id' => $users->id
+
+        $movie = Movie::create([
+            'user_id' => $user->id,
+            'slug' => 'matrix',
+            'title' => ['en'=> 'Matrix',
+                'ka'=> 'მატრიცა'  ],
         ]);
 
 
-        Quote::factory()->create([
-            'user_id' => $users->id,
-            'movie_id' => $movie->id
+        Quote::create([
+            'user_id' => $user->id,
+            'movie_id' => $movie->id,
+            'body' => ['en'=> "I don't like the idea that I'm not in control of my life",
+                'ka'=> 'არ მომწონს ის აზრი რომ თითქოს ჩემს ცხოვრებას მე არ ვაკონტროლებ'  ],
+            'thumbnail' => 'thumbnails/SdVAogFb0uiXEucH76zIHrfezko1efqdJ6l0pgR7.jpg'
+        ]);
+
+        Quote::create([
+            'user_id' => $user->id,
+            'movie_id' => $movie->id,
+            'body' => ['en'=> "Denial is the most predictable of all human responses",
+                'ka'=> 'უარყოფა ყველაზე მოსალოდნელი ადამიანური რეაქციაა'  ],
+            'thumbnail' => 'thumbnails/YOiqFxjoOClDlhJb3E1U2qIhPjY5N7CdN6OBttEm.webp'
         ]);
 
         }
-    }
+
 
 
 

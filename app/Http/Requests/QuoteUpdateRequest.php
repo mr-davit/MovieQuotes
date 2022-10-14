@@ -7,15 +7,7 @@ use Illuminate\Validation\Rule;
 
 class QuoteUpdateRequest extends FormRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     *
-     * @return bool
-     */
-    public function authorize()
-    {
-        return false;
-    }
+
 
     /**
      * Get the validation rules that apply to the request.
@@ -24,10 +16,12 @@ class QuoteUpdateRequest extends FormRequest
      */
     public function rules()
     {
+
         return [
             'body_en' => 'required',
             'body_ka' => 'required',
-            'thumbnail' => 'required|image',
+            'thumbnail' => 'image',
+
         ];
     }
 }

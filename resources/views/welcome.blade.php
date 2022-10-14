@@ -16,7 +16,7 @@
         </x-user-dashboard>
 
 
-        <img class="w-3/6 mx-auto" src="{{$quotes->thumbnail}}" alt="">
+        <img class="w-3/6 mx-auto" src="{{asset('storage/'. $quotes->thumbnail )}}" alt="">
         <h1 class="text-center mt-6 text-white">{{$quotes->body}}</h1>
 
         <a href="{{route('movie.index',['movie' => $quotes->movie->slug])}}"><h1 class="text-center mt-10 text-white underline text-3xl">{{$quotes->movie->title}}</h1></a>
