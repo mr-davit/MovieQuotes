@@ -14,9 +14,7 @@ class Movie extends Model
     public $translatable = ['title'];
 
     public mixed $quotes;
-    /**
-     * @var int|mixed|string|null
-     */
+
 
     Protected $guarded = ['id'];
 

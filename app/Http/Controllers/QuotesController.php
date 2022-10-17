@@ -14,17 +14,6 @@ class QuotesController extends Controller
 
     public function store(QuoteStoreRequest $request){
 
-
-//        $user = auth()->id();
-//
-//       $quote = new Quote();
-//        $quote->user_id = $user;
-//        $quote->movie_id = $request->movie_id;
-//        $quote->thumbnail = $request->file('thumbnail')->store('thumbnails');
-//        $quote->setTranslation('body','en', $request->body_en);
-//        $quote->setTranslation('body','ka', $request->body_ka);
-//        $quote->save();
-
         Quote::create([
             'user_id' => Auth::id(),
             'movie_id' => $request->movie_id,
@@ -57,7 +46,6 @@ class QuotesController extends Controller
         if (isset($request->thumbnail)){
             $attributes['thumbnail'] = $request->file('thumbnail')->store('thumbnails');
         }
-//        dd($attributes);
         $quote->update($attributes);
         return redirect(route('admin'));
     }
